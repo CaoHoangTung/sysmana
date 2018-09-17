@@ -19,6 +19,7 @@ Route::get('/services', 'ServiceController@index');
 
 Route::get('/services/get','ServiceController@readServices');
 
+Route::post('/services/{service}/{status}','ServiceController@handleService');
 Route::get('/services/{service}/{status}','ServiceController@handleService');
 
 Route::get('/files','FileController@index');

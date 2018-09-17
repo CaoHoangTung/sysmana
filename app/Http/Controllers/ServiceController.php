@@ -74,14 +74,14 @@ class ServiceController extends Controller{
         exec($cmd,$output);
         foreach($output as $key=>$info)
             Log::info($info);
-        return redirect()->back();
+        return 1;
     }
 
     // update status of all services
     public function refreshService(){
         // replace this command with the command to update service status to file
         $cmd = 'dir';
-        
+
         $output = array();
         exec($cmd,$output);
     }

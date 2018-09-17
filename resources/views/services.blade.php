@@ -16,9 +16,9 @@
             @foreach($services as $key => $service)
             <tr>
                 <td>{{$service["name"]}}</td>
-                <td>
+                <td class="sbutton" value1= {{$service["name"]}} value2= {{$service["status"]}}>
                     <label class="switch">
-                        <input type="checkbox" {{$service["status"]?"checked":""}}>
+                        <input class="sinput" type="checkbox" value= {{$service["status"]}} {{$service["status"]?"checked":""}}>
                         <span class="slider round"></span>
                     </label>
                 </td>
@@ -26,6 +26,25 @@
             @endforeach
         </tbody>
     </table>
+
+    <script>
+        $('.sbutton .switch .sinput').click(function(){
+            var service = $(this).attr('value1');
+            var status = $(this).attr('value2');
+            var url = '/services/'+service+"/"+(status==1?"1":"0");
+
+            $.ajax({
+                method: 'get',
+                url: url,
+                success: function(res){
+                    alert("SUCCESS");
+                },
+                error: function(res){
+                    console.log(res);
+                }
+            });
+        });
+    </script>
 
     <!-- _________________________________________________ -->
 
