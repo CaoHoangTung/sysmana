@@ -211,4 +211,11 @@ return [
 
     ],
 
+    'password' => "123",
+
+    'admin' => [
+        'username' => "ctosadmin",
+        'password' => "aidenisgay"
+    ]
+
 ];
