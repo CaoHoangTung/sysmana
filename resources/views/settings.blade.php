@@ -4,16 +4,17 @@
 
     <h2>Change password</h2>
 
-    <form action="/settings/password/change">
-
+    <form action="/settings/change-password" method="post">
         <div class="container">
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
-                
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+            <input type="password" placeholder="New Password" name="newpassword" required>
+            @if($errors->any())
+                <p style="color:green">{{$errors->get(0)[0]}}</p>
+                <p style="color:red">{{$errors->get(1)[0]}}</p>
+            @endif
             <button type="submit">Change</button>
-
         </div>
-
     </form>
 
     <style>

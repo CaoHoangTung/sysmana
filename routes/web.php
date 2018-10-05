@@ -44,7 +44,7 @@ Route::get('/admin-login','SecurityController@adminform');
 Route::post('/admin-login','SecurityController@adminlogin');
 
 Route::get('/settings','SettingsController@index');
-
+Route::post('/settings/change-password','SettingsController@changePassword');
 
 Route::get('/t',function(){
     session(['admin'=>'granted']);
