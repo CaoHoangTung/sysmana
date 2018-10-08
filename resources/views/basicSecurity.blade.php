@@ -13,7 +13,7 @@
                 <tbody>
                     @foreach($modes as $key => $mode)
                     <tr>
-                        <td>{{$mode["name"]}}</td>
+                        <td>{{$mode["name"]}} <span><a href="#" data-toggle="tooltip" title="{{$mode['info']}}"><i class="fa fa-info"></i></a></span></td>
                         <td class="sbutton">
                             <label class="switch">
                                 <input class="sinput" type="checkbox" value1={{$mode["code"]}} value2={{$mode["status"]}} value={{$mode["status"]}} {{$mode["status"]=="1"?"checked":""}}>
@@ -27,20 +27,20 @@
             <br><br>
             <h3>IP Outside Manager</h3><br>
             <div class="tab">
-                <button class="tablinks" onclick="getFile(event,'f1')">Deny</button>
-                <button class="tablinks" onclick="getFile(event,'f2')">Allow</button>
+                <button class="tablinks" onclick="getFile(event,0)">Deny</button>
+                <button class="tablinks" onclick="getFile(event,1)">Allow</button>
             </div>
     
-                <div id="f1" class="tabcontent">
+                <div id="0" class="tabcontent">
                     <form method='post' action="/files/edit" id="fileEditor">
-                        <input type="hidden" name="file" value="1">
+                        <input type="hidden" name="file" value="0">
                         <textarea class="texteditor" name='content' placeholder="Deny">Loading</textarea>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                 </div>
-                <div id="f2" class="tabcontent">
+                <div id="1" class="tabcontent">
                     <form method='post' action="/files/edit" id="fileEditor">
-                        <input type="hidden" name="file" value="2">
+                        <input type="hidden" name="file" value="1">
                         <textarea class="texteditor" name='content' placeholder="Allow">Loading</textarea>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
@@ -67,7 +67,7 @@
                 url: "/files/view",
                 method: 'get',
                 data: {
-                    file: fileName[1],
+                    file: fileName,
                 },  
                 success: function(res){
                     $('#'+fileName+' textarea').text(res);

@@ -6,7 +6,15 @@ use Illuminate\Http\Request;
 
 class FileController extends Controller{
     public static $file1 = "modes.txt";
-    public static $file2 = "fileList.txt";
+    public static $file2 = "ist.txt";
+    public static $file3 = "odes.txt"; // change this to /etc/squid/squid.block
+    public static $file4 = "fileList.txt"; // change this to /etc/squid/keyword.block
+    public static $files=[
+        "modes.txt",
+        "fileList.txt",
+        "modes.txt",
+        "fileList.txt"
+    ];
 
     public function index(){
         $files = self::readFiles();
@@ -16,12 +24,14 @@ class FileController extends Controller{
     }
 
     public function viewFile(Request $req){
-        $file = $req->file;
-        if ($file !== '1' && $file!=='2') 
-            return "";
-        $fileUrl = self::$file1;
-        if ($file === '2') 
-            $fileUrl = self::$file2;
+        $fileIndex = intval($req->file);
+        
+        if (!is_int($fileIndex))
+            return 0;
+        if ($fileIndex < 0 || $fileIndex >= sizeof(self::$files))
+            return 0;
+
+        $fileUrl = self::$files[$fileIndex];
 
         return file_get_contents($fileUrl);
     }
@@ -59,15 +69,15 @@ class FileController extends Controller{
 
     // // edit a file
     public function editFile(Request $req){
-        if ($req->file !== "1" && $req->file !=="2")
+        $fileIndex = intval($req->file);
+        
+        if (!is_int($fileIndex))
+            return 0;
+        if ($fileIndex < 0 || $fileIndex >= sizeof(self::$files))
             return 0;
 
-        $fileUrl = self::$file1;
-        if ($req->file==="2")
-            $fileUrl = $file2;
-            
-        $content = $req->content;
-
+        $fileUrl = self::$file1[$fileIndex];
+    
         $file = fopen($fileUrl,"w");
         fwrite($file,$content);
         fclose($file);

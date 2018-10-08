@@ -53,45 +53,31 @@ class SecurityController extends Controller{
         $protection['name'] = 'Protection Mode';
         $protection['status'] = self::getModeStatus("protection_mode");
         $protection['code'] = "protection_mode";
+        $protection['info'] = "Protection Mode";
+
         $ddos = array();
         $ddos['name'] = 'DDOS Protection';
         $ddos['status'] = self::getModeStatus("ddos_protection");
         $ddos['code'] = "ddos_protection";
+        $ddos['info'] = "DDOS Protection";
+
         $scan = array();
         $scan['name'] = 'Scan Protection';
         $scan['status'] = self::getModeStatus("scan_protection");
         $scan['code'] = "scan_protection";
+        $scan['info'] = "Scan Protection";
 
         $arr['modes'] = [$protection,$ddos,$scan];
         return view('basicSecurity',$arr);
     }   
 
+    // end basic mode
+
+    // protection mode
+
     public function protection(){
-        return view('test');
+        return view('protectionMode');
     }
 
-    public function executeCommand(Request $req){
-        $cmd = $req->cmd;
-        $res = shell_exec($cmd);
-        return($res);
-    }
-
-    // return to user to login as admin
-    public function adminform(){
-        return view('admin-login');
-    }
-
-    // process admin login
-    public function adminlogin(Request $req){
-        // change this url to where admin infos are contained (json format)
-        $url = ("C:\Users\DELL7470\Desktop\work\sub_proj\admin.json");
-        $file = file_get_contents($url);
-        $arr = json_decode($file);
-
-        if ($req->username === $arr->username && $req->password === $arr->password){
-            session(['admin'=>'granted']);
-            return redirect("/security/protection");
-        }
-        return redirect()->back()->withErrors(['Login failed']);
-    }
+    
 }

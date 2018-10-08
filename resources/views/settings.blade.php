@@ -5,7 +5,7 @@
     <h2>Change password</h2>
 
     <form action="/settings/change-password" method="post">
-        <div class="container">
+        <div>
             <label for="password"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="password" required>
             <input type="password" placeholder="New Password" name="newpassword" required>

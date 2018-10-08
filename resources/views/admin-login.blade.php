@@ -6,7 +6,7 @@
 
     <form action="/admin-login" method="post">
 
-        <div class="container">
+        <div>
             <label for="username"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>
 

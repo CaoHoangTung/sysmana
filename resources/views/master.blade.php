@@ -40,7 +40,7 @@
                 </li>
 
                 <li data-target="#tools">
-                    <a href="/local-manager"><i class="fa fa-wrench fa-lg fa-fw sidebar-icon"></i> Service Management</a>
+                    <a href="/services"><i class="fa fa-wrench fa-lg fa-fw sidebar-icon"></i> Service Management</a>
                 </li>
                 
                 <li data-target="#help" >
@@ -54,3 +54,9 @@
 <div class="main">
     @yield('content')
 </div>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
