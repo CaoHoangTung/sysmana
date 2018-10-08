@@ -10,7 +10,9 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 <div class="nav-side-menu">
-    <a href="/"><div class="brand">CTOS</div></a>
+    <a href="/">
+        <div class="brand"><img src="/img/logo.png" width="60px" height="60px">CTOS</div>
+    </a>
     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
   
         <div class="menu-list">
@@ -24,9 +26,21 @@
                     <li><a href="/security/basic"><i class="fa fa-angle-double-right"></i> Basic Security</a></li>
                     <li><a href="/security/protection"><i class="fa fa-angle-double-right"></i> Protection's Service</a></li>
                 </ul> 
-                
+
+                <li  data-toggle="collapse" data-target="#localmanager" class="collapsed">
+                    <a href="#"><i class="fa fa-user fa-lg fa-fw sidebar-icon"></i> Local Manager <span class="arrow"></span></a>
+                </li>
+                <ul class="sub-menu collapse" id="localmanager">
+                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Parent Control</a></li>
+                    <li><a href="#"><i class="fa fa-angle-double-right"></i> Local Settings</a></li>
+                </ul> 
+
                 <li data-target="#tools">
-                    <a href="/services"><i class="fa fa-wrench fa-lg fa-fw sidebar-icon"></i> Service Management</a>
+                    <a href="/command"><i class="fa fa-terminal fa-lg fa-fw sidebar-icon"></i> Command Execute</a>
+                </li>
+
+                <li data-target="#tools">
+                    <a href="/local-manager"><i class="fa fa-wrench fa-lg fa-fw sidebar-icon"></i> Service Management</a>
                 </li>
                 
                 <li data-target="#help" >

@@ -32,7 +32,7 @@ class SecurityController extends Controller{
         for ($i = 0 ; $i < sizeof($arr) ; $i++){
             $curmode = explode("=",$arr[$i]);
             if ($curmode[0] === $mode){
-                // execute something here
+                // execute something here to turn mode on/off
                 
                 $curmode[1]=$status;
                 
