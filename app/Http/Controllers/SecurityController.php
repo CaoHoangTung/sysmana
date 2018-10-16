@@ -33,9 +33,10 @@ class SecurityController extends Controller{
             $curmode = explode("=",$arr[$i]);
             if ($curmode[0] === $mode){
                 // execute something here to turn mode on/off
+                $cmd = "echo 1";
+                exec($cmd);
                 
                 $curmode[1]=$status;
-                
             }
             $res .= implode("=",$curmode)."\n";
         }
@@ -76,8 +77,27 @@ class SecurityController extends Controller{
     // protection mode
 
     public function protection(){
-        return view('protectionMode');
+        $pacbot = self::getModeStatus('pacbot');
+        $clamAV = self::getModeStatus('clam_av');
+        $squid = self::getModeStatus('squid_service');
+
+        $arr = array();
+        $arr['pacbot'] = $pacbot;
+        $arr['squid'] = $squid;
+        $arr['clamAV'] = $clamAV;
+        return view('protectionMode',$arr);
     }
 
+    public function switchSpecialMode(Request $req){
+        $to = $req->status;
+        if ($to==="1"){
+            // turn on
+            return "ON";
+        }
+        else{
+            // turn off
+            return "OFF";
+        }
+    }
     
 }

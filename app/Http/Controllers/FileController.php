@@ -70,13 +70,14 @@ class FileController extends Controller{
     // // edit a file
     public function editFile(Request $req){
         $fileIndex = intval($req->file);
+        $content = $req->content;
         
         if (!is_int($fileIndex))
             return 0;
         if ($fileIndex < 0 || $fileIndex >= sizeof(self::$files))
             return 0;
 
-        $fileUrl = self::$file1[$fileIndex];
+        $fileUrl = self::$files[$fileIndex];
     
         $file = fopen($fileUrl,"w");
         fwrite($file,$content);

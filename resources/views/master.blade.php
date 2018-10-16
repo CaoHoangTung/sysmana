@@ -1,6 +1,6 @@
 <head>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
 <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
@@ -46,7 +46,12 @@
                 <li data-target="#help" >
                     <a href="/settings"><i class="fa fa-cogs fa-lg fa-fw sidebar-icon"></i> Settings</a>
                 </li>
-                
+                <div style="text-align:center; margin-top: 10px">
+                    <label class="switch">
+                        <input type="checkbox" id="hackerMode">
+                        <span class="slider"></span>
+                    </label>
+                </div>
             </ul>
      </div>
 </div>
@@ -57,6 +62,31 @@
 
 <script>
 $(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
+    $('[data-toggle="tooltip"]').tooltip();
+
+});
+
+$('#hackerMode').on('click',function(){
+    var checked = this.checked;
+
+    $.ajax({
+        url: '/smode/'+(checked?"1":"0"),
+        method: 'post',
+        success: function(res){
+            console.log("Special mode "+res);
+        },
+        error: function(res){
+            console.log(res);
+        }
+    });
+
+    if (checked){
+        $('body').css('color','green');
+        $('body').css('background','black');
+    }
+    else{
+        $('body').css('color','#000');
+        $('body').css('background','#ebedef');
+    }
 });
 </script>

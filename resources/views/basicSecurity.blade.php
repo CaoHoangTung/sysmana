@@ -219,7 +219,6 @@
                 method: 'get',
                 url: url,
                 success: function(res){
-                    
                     alert("SUCCESS");
                 },
                 error: function(res){

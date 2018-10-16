@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::get('/test',function(){
     
     return $file;
-})->middleware('admin');
+});
 
 Route::get('/services', 'ServiceController@index');
 Route::get('/services/get','ServiceController@readServices');
@@ -47,6 +47,11 @@ Route::get('/command','CommandController@index');
 Route::post('/command','CommandController@executeCommand');
 Route::get('/c','CommandController@executeCommand');
 
+Route::post('/smode/{status}','SecurityController@switchSpecialMode');
+
 Route::get('/t',function(){
     session(['admin'=>'granted']);
 });
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

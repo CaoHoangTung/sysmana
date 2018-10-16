@@ -66,15 +66,15 @@ class ServiceController extends Controller{
     // turn a service on/off
     public function handleService($service,$status){
         $cmd = "service ".$service." ";
-        $cmd .= $status==1?"stop":"start";
-
+        $cmd .= $status==1?"start":"stop";
+   
         $output = array();
 
         // logs can be found in /storage/logs/laravel.log
         exec($cmd,$output);
         foreach($output as $key=>$info)
             Log::info($info);
-        return 1;
+        return $cmd;
     }
 
     // update status of all services

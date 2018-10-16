@@ -38,8 +38,7 @@
                 method: 'get',
                 url: url,
                 success: function(res){
-                    alert("SUCCESS "+status);
-                   
+                    alert("SUCCESS "+res);
                 },
                 error: function(res){
                     console.log(res);
