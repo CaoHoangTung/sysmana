@@ -19,7 +19,7 @@ class AdminController extends Controller{
 
         if ($req->username === $arr->username && $req->password === $arr->password){
             session(['admin'=>'granted']);
-            return redirect("/command");
+            return redirect("/");
         }
         return redirect()->back()->withErrors(['Login failed']);
     }

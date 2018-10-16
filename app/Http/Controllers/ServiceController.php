@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Log;
 
 class ServiceController extends Controller{
-
+    public function __construct(){
+        $this->middleware('admin');
+    }
     // when user access /services
     public function index(){
         $result = self::readServices();

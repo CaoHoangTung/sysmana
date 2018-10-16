@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class SettingsController extends Controller{
     function __construct(){
-        // $this->middleware('admin');
+        $this->middleware('admin');
     }
 
     public function index(){

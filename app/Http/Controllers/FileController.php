@@ -16,6 +16,10 @@ class FileController extends Controller{
         "fileList.txt"
     ];
 
+    public function __construct(){
+        $this->middleware('admin');
+    }
+
     public function index(){
         $files = self::readFiles();
         $arr = array();

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class SecurityController extends Controller{
-
+    public function __construct(){
+        $this->middleware('admin');
+    }
     private function getModeStatus($mode){
         // config files is in public/modes.txt
         $fileUrl = "modes.txt";
