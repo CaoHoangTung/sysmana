@@ -5,8 +5,9 @@
         <div class="content">
             <div class="form-group" style="width: 80%">
                 <label for="cmd">Get Facebook ID:</label>
-                <input type="text" style="width: 100%" class="form-control" id="fbUrl" placeholder="https://facebook.com/proxyht">
+                <input type="text" style="width: 100%" class="form-control" id="fbUrl" placeholder="https://facebook.com/proxyht" required>
             </div>
+
             <button type="submit" class="btn btn-default" id="submitFBUrl">Submit</button>
             <span id="responseFBMsg"></span><br><br>
 
@@ -215,7 +216,6 @@
             var status = $(this).val();
             $(this).val(status=="1"?"0":"1");
             var url = '/security/basic/'+service+"/"+(status=="1"?"0":"1");
-            
             console.log(url);
             $.ajax({
                 method: 'get',
@@ -248,30 +248,32 @@
         });
 
         function submitFBUrl(){
-            let cmd = $('#fbUrl').val();
+            $('#responseFBMsg').text("Processing");
+            let url = $('#fbUrl').val();
             $.ajax({
-                url: '/command',
+                url: '/security/protection/getfbid',
                 method: 'post',
                 data: {
-                    cmd: cmd,
+                    url: url,
                 },
                 success: function(res){
-                   
+                    console.log(res);
+                    $('#responseFBMsg').html("ID: "+"<b>"+res+"</b>");
                 },
                 error: function(res){
+                    $('#responseFBMsg').html("Internal error");
                     console.log(res);
-                    alert("Network Error");
                 }
-            });
+            })
         }
 
-        $('#submitFBUrl').click(function(){
-            submitCmd();
+        $('#submitFBUrl').on('click',function(){
+            submitFBUrl();
         });
 
         $('#fbUrl').keyup(function(e){
             if (e.keyCode==13)
-                submitCmd();
+                submitFBUrl();
         });
     </script>
 

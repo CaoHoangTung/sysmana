@@ -78,6 +78,7 @@ class SecurityController extends Controller{
 
     // protection mode
 
+    // index: return view
     public function protection(){
         $pacbot = self::getModeStatus('pacbot');
         $clamAV = self::getModeStatus('clam_av');
@@ -90,16 +91,33 @@ class SecurityController extends Controller{
         return view('protectionMode',$arr);
     }
 
-    public function switchSpecialMode(Request $req){
-        $to = $req->status;
-        if ($to==="1"){
-            // turn on
-            return "ON";
-        }
-        else{
-            // turn off
-            return "OFF";
-        }
+    // get facebook id
+    public function getFacebookId(Request $req){
+        // change the url
+        $fileToWrite = "C:\Users\DELL7470\Desktop\work\sub_proj\public\input.txt";
+        $fileToExecute = "C:\Users\DELL7470\Desktop\work\sub_proj\get_id.py";
+        $fileToGetResult = "C:\Users\DELL7470\Desktop\work\sub_proj\public\output.txt";
+
+        $facebookUrl = $req->url;
+
+        // write to input file
+        $f = fopen($fileToWrite,'w');
+        fwrite($f,$facebookUrl);
+        fclose($f);
+
+        // execute to write fb url
+        // read from $fileToWrite and output to $fileToGetResult
+
+        $cmd = "python ".$fileToExecute. " 2>&1";
+        $output = array();
+        exec($cmd,$output);
+        // $output is for debug
+    
+        // read and return result
+        $f = fopen($fileToGetResult,'r');
+        $content = fread($f,filesize($fileToGetResult));
+        fclose($f);
+        return $content;
     }
     
 }

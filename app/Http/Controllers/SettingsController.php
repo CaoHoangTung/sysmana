@@ -35,4 +35,16 @@ class SettingsController extends Controller{
         return redirect()->back()->withErrors([$msg1,$msg2]);
 
     }
+
+    public function switchSpecialMode(Request $req){
+        $to = $req->status;
+        if ($to==="1"){
+            // turn on
+            return "ON";
+        }
+        else{
+            // turn off
+            return "OFF";
+        }
+    }
 }
