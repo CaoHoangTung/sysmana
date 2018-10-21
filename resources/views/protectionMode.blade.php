@@ -29,6 +29,12 @@
                 <span class="slider round"></span>
             </label>
 
+            <p>HTTP Access Deny Blockfiles <span><a href="#" data-toggle="tooltip" title="Protect you from malwares, trojans, downloads from internet"><i class="fa fa-info"></i></a></span></p>
+            <label class="switch" style="margin-bottom: 30px">
+                <input type="checkbox" class="switcher" id="http_access" @if($http_access) checked @endif>
+                <span class="slider round"></span>
+            </label>
+
             <div class="tab">
                 <button class="tablinks" onclick="getFile(event,2)">File Filter</button>
                 <button class="tablinks" onclick="getFile(event,3)">Block Web (by keyword)</button>

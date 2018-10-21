@@ -2,13 +2,7 @@ ddos_protection=1
 scan_protection=0
 protection_mode=1
 special_mode=0
-pacbot=1
+pacbot=0
 clam_av=0
 squid_service=0
-
-
-
-
-
-
-
+http_access=1
