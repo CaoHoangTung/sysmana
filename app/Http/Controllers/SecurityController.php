@@ -62,7 +62,7 @@ class SecurityController extends Controller{
                             $curpos--;
                         }
                         $l = $curpos;
-                        // return $l." ".$r;
+
                         $squid_config_content = substr($squid_config_content,0,$l+1)
                                                 .substr($squid_config_content,$r,strlen($squid_config_content)-$r+1);
                         
@@ -79,7 +79,6 @@ class SecurityController extends Controller{
                         $squid_config_file = fopen($squid_config_url,"w");
                         fwrite($squid_config_file,$squid_config_content);
                         fclose($squid_config_file);
-                        return $squid_config_content." ".$l." ".$r;
                 }
                 if ($cmd !=="") exec($cmd);
  
