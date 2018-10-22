@@ -58,7 +58,7 @@ class SecurityController extends Controller{
 
                         // first, remove the '#'
                         while ($curpos >= 0 && ($squid_config_content[$curpos] == ' ' || $squid_config_content[$curpos] == '#'  )){
-                            echo $squid_config_content[$curpos];
+                            // echo $squid_config_content[$curpos];
                             $curpos--;
                         }
                         $l = $curpos;
@@ -117,7 +117,7 @@ class SecurityController extends Controller{
         $scan['code'] = "scan_protection";
         $scan['info'] = "Scan Protection";
 
-        $arr['modes'] = [$protection,$ddos,$scan,$http_access];
+        $arr['modes'] = [$protection,$ddos,$scan];
         return view('basicSecurity',$arr);
     }   
 
