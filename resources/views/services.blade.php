@@ -29,6 +29,9 @@
 
     <script>
         $('.sbutton .switch .sinput').click(function(){
+            msg = new MessageBox('Loading','good');
+            msg.show();
+            
             var service = $(this).attr('value1');
             var status = $(this).val();
             $(this).val(status=="1"?"0":"1");
@@ -38,9 +41,13 @@
                 method: 'get',
                 url: url,
                 success: function(res){
-                    alert("SUCCESS "+res);
+                    msg = new MessageBox('Success','good');
+                    msg.show();
+                    // alert("SUCCESS "+res);
                 },
                 error: function(res){
+                    msg = new MessageBox('Error occured','bad');
+                    msg.show();
                     console.log(res);
                 }
             });

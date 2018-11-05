@@ -33,7 +33,7 @@
             <label class="switch" style="margin-bottom: 30px">
                 <input type="checkbox" class="switcher" id="http_access" @if($http_access) checked @endif>
                 <span class="slider round"></span>
-            </label>
+            </label>          
 
             <div class="tab">
                 <button class="tablinks" onclick="getFile(event,2)">File Filter</button>
@@ -43,14 +43,14 @@
                 <div id="2" class="tabcontent">
                     <form method='post' action="/files/edit" id="fileEditor">
                         <input type="hidden" name="file" value="2">
-                        <textarea class="texteditor" name='content' placeholder="Deny">Loading</textarea>
+                        <textarea class="texteditor" name='content' placeholder="">Loading</textarea>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                 </div>
                 <div id="3" class="tabcontent">
                     <form method='post' action="/files/edit" id="fileEditor">
                         <input type="hidden" name="file" value="3">
-                        <textarea class="texteditor" name='content' placeholder="Allow">Loading</textarea>
+                        <textarea class="texteditor" name='content' placeholder="">Loading</textarea>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                 </div>
@@ -216,38 +216,23 @@
         }
     </style>
 
-    <script>
-        $('.sbutton .switch .sinput').click(function(){
-            var service = $(this).attr('value1');
-            var status = $(this).val();
-            $(this).val(status=="1"?"0":"1");
-            var url = '/security/basic/'+service+"/"+(status=="1"?"0":"1");
-            console.log(url);
-            $.ajax({
-                method: 'get',
-                url: url,
-                success: function(res){
-                    
-                    alert("SUCCESS");
-                },
-                error: function(res){
-                    console.log(res);
-                }
-            });
-        });
-    </script>
-
     <!-- _________________________________________________ -->
 
     <script>
         $('.switcher').on('click',function(){
+            let msg = new MessageBox('Loading',"good");
+            msg.show();
             $.ajax({
                 url: '/security/basic/'+this.id+'/'+(this.checked?"1":"0"),
                 method: 'get',
                 success: function(res){
+                    msg = new MessageBox('Success','good');
+                    msg.show();
                     console.log(res);
                 },
                 error: function(res){
+                    msg = new MessageBox('Error occured','bad');
+                    msg.show();
                     console.log(res);
                 }
             })

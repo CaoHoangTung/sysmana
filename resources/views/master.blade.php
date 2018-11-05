@@ -59,6 +59,9 @@
 <div class="main">
     @yield('content')
 </div>
+<script src="/js/MessageBox.js">
+        
+    </script>
 
 <script>
 $(document).ready(function(){
